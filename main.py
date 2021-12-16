@@ -64,7 +64,6 @@ def main():
 
     with client.ApiClient() as api_client:
         api_instance = client.CustomObjectsApi(api_client)
-        # list_cluster_custom_object()
         try:
             api_response = api_instance.list_namespaced_custom_object(group="stable.dwk.stable.dwk", version="v1", namespace="default", plural="dummysites")
         except ApiException as e:
