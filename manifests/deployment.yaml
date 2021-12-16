@@ -16,8 +16,8 @@ spec:
       containers:
       - env:
         - name: WWW_ROOT
-          value: /usr/src/app/wwww
-        image: pasiol/dummysite-scraper@sha256:f6afc80dc09a0bfccde12a123038f8404636ab30718c38766fb80dc08260be2d
+          value: /usr/src/app/www
+        image: pasiol/dummysite-scraper@sha256:a2625c46105365404871a1ffcbf353f1b3e2b99f06c22ca30d54bb90c98cd537
         imagePullPolicy: IfNotPresent
         name: dummysite-scraper
         resources:
@@ -25,7 +25,7 @@ spec:
             memory: "256Mi"
             cpu: "150m"
         volumeMounts:
-        - mountPath: /usr/src/app/wwww
+        - mountPath: /usr/src/app/www
           name: www-data
       volumes:
         - name: www-data

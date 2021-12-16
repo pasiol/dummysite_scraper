@@ -46,6 +46,8 @@ def write_dummy_site_on_disk(html, url):
             with open(filename, "w", encoding="utf-8") as output_file:
                 output_file.writelines(html)
                 update_index_page(url, subfolder)
+                logger.info("created and updated")
+                time.sleep(60)
         except Exception as e:
             logger.critical(f"writing html file failed")
             os.exit(1)
