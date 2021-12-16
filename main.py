@@ -59,8 +59,8 @@ def update_index_page(url, folder):
 
 
 def main():
-    config.load_kube_config()
-    #config.load_incluster_config()
+    #config.load_kube_config()
+    config.load_incluster_config()
 
     with client.ApiClient() as api_client:
         api_instance = client.CustomObjectsApi(api_client)
