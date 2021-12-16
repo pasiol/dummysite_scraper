@@ -1,0 +1,16 @@
+url = api_response["items"][0]["spec"]["website_url"]
+page = requests.get(url)
+soup = BeautifulSoup(page.content, "html.parser")
+
+pprint(soup.text)
+pprint(page.content)
+payload = api_response
+
+payload = {"spec": api_response["items"][0]["spec"]}
+payload["spec"]["succeed"]=False
+try:
+    api_response = api_instance.patch_namespaced_custom_object(group="stable.dwk.stable.dwk", version="v1",
+                                                     namespace="exercise501", plural="dummysite",name="exercise501", body = payload )
+    pprint(api_response)
+except ApiException as e:
+    print("Exception when calling CustomObjectsApi->create_cluster_custom_object: %s\n" % e)

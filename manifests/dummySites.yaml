@@ -1,0 +1,17 @@
+apiVersion: stable.dwk.stable.dwk/v1
+kind: DummySite
+metadata:
+  name: example-com
+spec:
+  website_url: http://example.com
+  name: example-com
+  succeed: false
+---
+apiVersion: stable.dwk.stable.dwk/v1
+kind: DummySite
+metadata:
+  name: dwk
+spec:
+  website_url: https://devopswithkubernetes.com/
+  name: dwk
+  succeed: false

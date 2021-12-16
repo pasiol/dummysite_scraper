@@ -1,0 +1,4 @@
+kubernetes
+requests
+bs4
+validators

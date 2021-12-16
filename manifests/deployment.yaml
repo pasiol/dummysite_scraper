@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dummysite-scraper
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dummysite-scraper
+  template:
+    metadata:
+      labels:
+        app: dummysite-scraper
+    spec:
+      serviceAccountName: dummysite-controller-account
+      containers:
+      - env:
+        - name: WWW_ROOT
+          value: /usr/src/app/wwww
+        image: pasiol/dummysite-scraper@sha256:f6afc80dc09a0bfccde12a123038f8404636ab30718c38766fb80dc08260be2d
+        imagePullPolicy: IfNotPresent
+        name: dummysite-scraper
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "150m"
+        volumeMounts:
+        - mountPath: /usr/src/app/wwww
+          name: www-data
+      volumes:
+        - name: www-data
+          persistentVolumeClaim:
+            claimName: dummysites-pvc

@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: dummysite-scraper
+spec:
+  schedule: "*/10 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: dummysite-controller-account
+          volumes:
+            - name: www-data
+              persistentVolumeClaim:
+                claimName: dummysites-pvc
+          restartPolicy: OnFailure
+          containers:
+          - env:
+            - name: WWW_ROOT
+              value: /usr/src/app/wwww
+            image: pasiol/dummysite-scraper@sha256:f6afc80dc09a0bfccde12a123038f8404636ab30718c38766fb80dc08260be2d
+            imagePullPolicy: IfNotPresent
+            name: dummysite-scraper
+            resources:
+              limits:
+                memory: "256Mi"
+                cpu: "150m"
+            volumeMounts:
+            - mountPath: "/usr/src/app/www"
+              name: www-data
